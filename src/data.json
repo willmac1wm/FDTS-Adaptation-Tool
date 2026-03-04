@@ -1,0 +1,598 @@
+{
+  "context": {
+    "system": "National FDTS Adaptation Assistant",
+    "purpose": "Expert assistant for National TFDM FDTS adaptation files",
+    "last_updated": "2026-03-03",
+    "maintained_by": "FDTS Adaptation Lead, AJM-253"
+  },
+  "artccs": {
+    "ZDC": {
+      "name": "Washington Center",
+      "location": "Leesburg, VA"
+    },
+    "ZTL": {
+      "name": "Atlanta Center",
+      "location": "Hampton, GA"
+    },
+    "ZHU": {
+      "name": "Houston Center",
+      "location": "Houston, TX"
+    },
+    "ZAB": {
+      "name": "Albuquerque Center",
+      "location": "Albuquerque, NM"
+    },
+    "ZMA": {
+      "name": "Miami Center",
+      "location": "Miami, FL"
+    },
+    "ZID": {
+      "name": "Indianapolis Center",
+      "location": "Indianapolis, IN"
+    },
+    "ZAU": {
+      "name": "Chicago Center",
+      "location": "Aurora, IL"
+    },
+    "ZLA": {
+      "name": "Los Angeles Center",
+      "location": "Palmdale, CA"
+    },
+    "ZNY": {
+      "name": "New York Center",
+      "location": "Ronkonkoma, NY"
+    },
+    "ZOA": {
+      "name": "Oakland Center",
+      "location": "Fremont, CA"
+    },
+    "ZOB": {
+      "name": "Cleveland Center",
+      "location": "Oberlin, OH"
+    }
+  },
+  "facilities": {
+    "PCTa": {
+      "label": "Potomac - IAD",
+      "full_name": "Washington Dulles International",
+      "airports": [
+        "IAD"
+      ],
+      "artcc": "ZDC",
+      "latest_version": "1.03",
+      "latest_date": "2026-02-19",
+      "schema": "pcrcu"
+    },
+    "PCTd": {
+      "label": "Potomac - BWI",
+      "full_name": "Baltimore/Washington International Thurgood Marshall",
+      "airports": [
+        "BWI"
+      ],
+      "artcc": "ZDC",
+      "latest_version": "1.02",
+      "latest_date": "2026-02-19",
+      "schema": "pcrcu"
+    },
+    "PCTe": {
+      "label": "Potomac - DCA-ADW",
+      "full_name": "Ronald Reagan Washington National / Joint Base Andrews",
+      "airports": [
+        "DCA",
+        "ADW",
+        "JPN"
+      ],
+      "artcc": "ZDC",
+      "latest_version": "1.02",
+      "latest_date": "2026-02-19",
+      "schema": "pcrcu"
+    },
+    "RDU": {
+      "label": "Raleigh-Durham",
+      "full_name": "Raleigh-Durham International",
+      "airports": [
+        "RDU"
+      ],
+      "artcc": "ZDC",
+      "latest_version": "1.01",
+      "latest_date": "2025",
+      "schema": "pcrcu"
+    },
+    "ABQ": {
+      "label": "Albuquerque",
+      "full_name": "Albuquerque International Sunport",
+      "airports": [
+        "ABQ"
+      ],
+      "artcc": "ZAB",
+      "latest_version": "1.00",
+      "latest_date": "2023-03-30",
+      "schema": "pcrcu"
+    },
+    "MIA": {
+      "label": "Miami",
+      "full_name": "Miami International",
+      "airports": [
+        "MIA"
+      ],
+      "artcc": "ZMA",
+      "latest_version": "1.00",
+      "latest_date": "2025-09-28",
+      "schema": "pcrcu"
+    },
+    "IAH": {
+      "label": "Houston Bush",
+      "full_name": "George Bush Intercontinental",
+      "airports": [
+        "IAH"
+      ],
+      "artcc": "ZHU",
+      "latest_version": "1.00",
+      "latest_date": "2025-03-24",
+      "schema": "pcrcu"
+    },
+    "F11": {
+      "label": "Central Florida TRACON",
+      "full_name": "Central Florida TRACON",
+      "airports": [
+        "MCO",
+        "SFB"
+      ],
+      "artcc": "ZMA",
+      "latest_version": "1.00",
+      "latest_date": "2023-01-01",
+      "schema": "pcrcu"
+    },
+    "IND": {
+      "label": "Indianapolis",
+      "full_name": "Indianapolis International",
+      "airports": [
+        "IND"
+      ],
+      "artcc": "ZID",
+      "latest_version": "1.00",
+      "latest_date": "2023-05-10",
+      "schema": "pcrcu"
+    },
+    "MDW": {
+      "label": "Chicago Midway",
+      "full_name": "Chicago Midway International",
+      "airports": [
+        "MDW"
+      ],
+      "artcc": "ZAU",
+      "latest_version": "1.00",
+      "latest_date": "2024-06-14",
+      "schema": "pcrcu"
+    },
+    "LAX": {
+      "label": "Los Angeles",
+      "full_name": "Los Angeles International",
+      "airports": [
+        "LAX"
+      ],
+      "artcc": "ZLA",
+      "latest_version": "1.00",
+      "latest_date": "2023-11-30",
+      "schema": "pcrcu"
+    },
+    "A80": {
+      "label": "Atlanta TRACON",
+      "full_name": "Atlanta TRACON",
+      "airports": [
+        "ATL"
+      ],
+      "artcc": "ZTL",
+      "latest_version": "1.00",
+      "latest_date": "2022-12-21",
+      "schema": "pcrcu"
+    },
+    "CLT": {
+      "label": "Charlotte",
+      "full_name": "Charlotte Douglas International",
+      "airports": [
+        "CLT"
+      ],
+      "artcc": "ZTL",
+      "latest_version": "1.06",
+      "latest_date": "2024-05-20",
+      "schema": "pcrcu"
+    },
+    "PHX": {
+      "label": "Phoenix",
+      "full_name": "Phoenix Sky Harbor",
+      "airports": [
+        "PHX"
+      ],
+      "artcc": "ZAB",
+      "latest_version": "1.02",
+      "latest_date": "2024-04-18",
+      "schema": "pcrcu"
+    },
+    "CMH": {
+      "label": "Columbus",
+      "full_name": "John Glenn Columbus International",
+      "airports": [
+        "CMH"
+      ],
+      "artcc": "ZID",
+      "latest_version": "1.00",
+      "latest_date": "2023-04-03",
+      "schema": "pcrcu"
+    },
+    "MDT": {
+      "label": "Harrisburg",
+      "full_name": "Harrisburg International",
+      "airports": [
+        "MDT"
+      ],
+      "artcc": "ZNY",
+      "latest_version": "1.00",
+      "latest_date": "2023-01-01",
+      "schema": "pcrcu"
+    },
+    "CVG": {
+      "label": "Cincinnati",
+      "full_name": "Cincinnati/Northern Kentucky",
+      "airports": [
+        "CVG"
+      ],
+      "artcc": "ZID",
+      "latest_version": "1.00",
+      "latest_date": "2023-01-01",
+      "schema": "pcrcu"
+    },
+    "SBN": {
+      "label": "South Bend",
+      "full_name": "South Bend International",
+      "airports": [
+        "SBN"
+      ],
+      "artcc": "ZAU",
+      "latest_version": "1.00",
+      "latest_date": "2023-01-01",
+      "schema": "pcrcu"
+    },
+    "SFO": {
+      "label": "San Francisco",
+      "full_name": "San Francisco International",
+      "airports": [
+        "SFO",
+        "OAK"
+      ],
+      "artcc": "ZOA",
+      "latest_version": "1.01",
+      "latest_date": "2025-02-21",
+      "schema": "pcrcu"
+    },
+    "SJC": {
+      "label": "San Jose",
+      "full_name": "Norman Y. Mineta San Jose",
+      "airports": [
+        "SJC"
+      ],
+      "artcc": "ZOA",
+      "latest_version": "1.02",
+      "latest_date": "2024-02-05",
+      "schema": "pcrcu"
+    },
+    "RSW": {
+      "label": "Fort Myers",
+      "full_name": "Southwest Florida International",
+      "airports": [
+        "RSW"
+      ],
+      "artcc": "ZMA",
+      "latest_version": "1.01",
+      "latest_date": "2023-05-11",
+      "schema": "pcrcu"
+    },
+    "TPA": {
+      "label": "Tampa",
+      "full_name": "Tampa International",
+      "airports": [
+        "TPA"
+      ],
+      "artcc": "ZMA",
+      "latest_version": "1.03",
+      "latest_date": "2024-01-30",
+      "schema": "pcrcu"
+    },
+    "LAS": {
+      "label": "Las Vegas",
+      "full_name": "Harry Reid International",
+      "airports": [
+        "LAS"
+      ],
+      "artcc": "ZLA",
+      "latest_version": "1.02",
+      "latest_date": "2024-01-18",
+      "schema": "pcrcu"
+    },
+    "CLE": {
+      "label": "Cleveland",
+      "full_name": "Cleveland Hopkins",
+      "airports": [
+        "CLE"
+      ],
+      "artcc": "ZOB",
+      "latest_version": "1.00",
+      "latest_date": "2023-05-09",
+      "schema": "pcrcu"
+    },
+    "AUS": {
+      "label": "AUS",
+      "full_name": "AUS Facility",
+      "airports": [
+        "AUS"
+      ],
+      "artcc": "TBD",
+      "latest_version": "1.00",
+      "latest_date": "2024-01-01",
+      "schema": "pcrcu"
+    },
+    "BUF": {
+      "label": "BUF",
+      "full_name": "BUF Facility",
+      "airports": [
+        "BUF"
+      ],
+      "artcc": "TBD",
+      "latest_version": "1.00",
+      "latest_date": "2024-01-01",
+      "schema": "pcrcu"
+    },
+    "C90": {
+      "label": "C90",
+      "full_name": "C90 Facility",
+      "airports": [
+        "C90"
+      ],
+      "artcc": "TBD",
+      "latest_version": "1.00",
+      "latest_date": "2024-01-01",
+      "schema": "pcrcu"
+    },
+    "CRP": {
+      "label": "CRP",
+      "full_name": "CRP Facility",
+      "airports": [
+        "CRP"
+      ],
+      "artcc": "TBD",
+      "latest_version": "1.00",
+      "latest_date": "2024-01-01",
+      "schema": "pcrcu"
+    },
+    "DAY": {
+      "label": "DAY",
+      "full_name": "DAY Facility",
+      "airports": [
+        "DAY"
+      ],
+      "artcc": "TBD",
+      "latest_version": "1.00",
+      "latest_date": "2024-01-01",
+      "schema": "pcrcu"
+    },
+    "LIT": {
+      "label": "LIT",
+      "full_name": "LIT Facility",
+      "airports": [
+        "LIT"
+      ],
+      "artcc": "TBD",
+      "latest_version": "1.00",
+      "latest_date": "2024-01-01",
+      "schema": "pcrcu"
+    },
+    "NCT": {
+      "label": "NCT",
+      "full_name": "NCT Facility",
+      "airports": [
+        "NCT"
+      ],
+      "artcc": "TBD",
+      "latest_version": "1.00",
+      "latest_date": "2024-01-01",
+      "schema": "pcrcu"
+    },
+    "PCT": {
+      "label": "PCT",
+      "full_name": "PCT Facility",
+      "airports": [
+        "PCT"
+      ],
+      "artcc": "TBD",
+      "latest_version": "1.00",
+      "latest_date": "2024-01-01",
+      "schema": "pcrcu"
+    },
+    "R90": {
+      "label": "R90",
+      "full_name": "R90 Facility",
+      "airports": [
+        "R90"
+      ],
+      "artcc": "TBD",
+      "latest_version": "1.00",
+      "latest_date": "2024-01-01",
+      "schema": "pcrcu"
+    },
+    "ROA": {
+      "label": "ROA",
+      "full_name": "ROA Facility",
+      "airports": [
+        "ROA"
+      ],
+      "artcc": "TBD",
+      "latest_version": "1.00",
+      "latest_date": "2024-01-01",
+      "schema": "pcrcu"
+    },
+    "SCT": {
+      "label": "SCT",
+      "full_name": "SCT Facility",
+      "airports": [
+        "SCT"
+      ],
+      "artcc": "TBD",
+      "latest_version": "1.00",
+      "latest_date": "2024-01-01",
+      "schema": "pcrcu"
+    },
+    "SDF": {
+      "label": "SDF",
+      "full_name": "SDF Facility",
+      "airports": [
+        "SDF"
+      ],
+      "artcc": "TBD",
+      "latest_version": "1.00",
+      "latest_date": "2024-01-01",
+      "schema": "pcrcu"
+    },
+    "LAB (ZCY)": {
+      "label": "LAB (ZCY)",
+      "full_name": "LAB (ZCY) Facility",
+      "airports": [
+        "LAB"
+      ],
+      "artcc": "TBD",
+      "latest_version": "1.00",
+      "latest_date": "2024-01-01",
+      "schema": "pcrcu"
+    },
+    "Lab (ZCY)": {
+      "label": "Lab (ZCY)",
+      "full_name": "Lab (ZCY) Facility",
+      "airports": [
+        "Lab"
+      ],
+      "artcc": "TBD",
+      "latest_version": "1.00",
+      "latest_date": "2024-01-01",
+      "schema": "pcrcu"
+    }
+  },
+  "validation_rules": {
+    "printer_name": {
+      "min_chars": 1,
+      "max_chars": 10,
+      "allowed": "alphanumeric + underscore"
+    },
+    "fix_name": {
+      "min_chars": 1,
+      "max_chars": 25
+    },
+    "role_id": {
+      "min_chars": 1,
+      "max_chars": 10
+    },
+    "departure_airport": {
+      "chars": 3,
+      "format": "IATA"
+    },
+    "runway_airport": {
+      "chars": 4,
+      "format": "ICAO"
+    },
+    "aircraft_type": {
+      "min_chars": 2,
+      "max_chars": 4
+    },
+    "fix_ac_list": {
+      "allowed_values": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    "default_config": {
+      "max_per_file": 1
+    },
+    "routing_order": "first_match_wins",
+    "wildcard": {
+      "xml_value": "",
+      "note": "Empty string matches all"
+    },
+    "site_id": {
+      "must_match": "PC-RCU name",
+      "valid_values": [
+        "PCTa",
+        "PCTd",
+        "PCTe"
+      ]
+    }
+  },
+  "open_issues": [
+    {
+      "id": 1,
+      "facility": "PCT-BWI",
+      "type": "Adaptation",
+      "status": "Open",
+      "title": "Remove secondary prints to BUFFR",
+      "notes": "Remove fdtsPrinter2=BUFFR from all routing configs.",
+      "date": "2026-02-27"
+    },
+    {
+      "id": 2,
+      "facility": "PCT-IAD",
+      "type": "Investigation",
+      "status": "Open",
+      "title": "ASPER duplicate strips on ALL TO 3A",
+      "notes": "Logs requested from AJ.",
+      "date": "2026-03-02"
+    },
+    {
+      "id": 3,
+      "facility": "PCT",
+      "type": "Investigation",
+      "status": "Open",
+      "title": "DCAT action button not passing VS",
+      "notes": "Tower selects VS but it does not appear on strip.",
+      "date": "2026-03-02"
+    },
+    {
+      "id": 4,
+      "facility": "PCT-IAD",
+      "type": "Software",
+      "status": "In Progress",
+      "title": "FDIOFIXFDIOALTITUDE prints",
+      "notes": "Stacey Montresor on-site IAD 2026-03-11.",
+      "date": "2026-03-02"
+    }
+  ],
+  "contacts": {
+    "AJ_Sawaqdeh": {
+      "role": "ATC Support Specialist PCT530",
+      "email": "ayoub.sawaqdeh@faa.gov"
+    },
+    "Stacey_Montresor": {
+      "role": "Hardware Engineering AJM-2511",
+      "email": "stacey.l.montresor@faa.gov"
+    },
+    "K_Gilman": {
+      "role": "FDIO System Manager AJM-2511"
+    },
+    "C_Reingruber": {
+      "role": "National Adaptation Manager AJM-257"
+    },
+    "Evan_Gabler": {
+      "role": "NATCA rep",
+      "email": "egabler@natca.org"
+    }
+  },
+  "change_workflow": [
+    "Import current XML",
+    "Edit in appropriate tab",
+    "Validate XML well-formedness",
+    "Download and rename with incremented version",
+    "Generate authorization memo",
+    "Get concurrences: K. Gilman, Will, C. Reingruber",
+    "Burn DVD per TI 6130.22",
+    "Ship DVD + memo to SSC Managers",
+    "Remind facility: update BOTH FDIO control units"
+  ]
+}
