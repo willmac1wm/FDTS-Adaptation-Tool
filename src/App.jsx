@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef, useMemo } from "react";
+import { useState, useCallback, useRef, useMemo, useEffect } from "react";
 import * as XLSX from "xlsx";
 import MDBReader from "mdb-reader";
 import appData from "./data.json";
@@ -1045,6 +1045,28 @@ export default function FDTSAdaptationTool() {
   const xlsxRef = useRef();
   const mdbRef = useRef();
 
+  // Load live synced data if available (Polling every 5s)
+  useEffect(() => {
+    const checkSync = () => {
+      fetch("/src/live_data.json?t=" + Date.now()) // nocache
+        .then(res => res.json())
+        .then(syncedData => {
+          setData(d => {
+            // Only update if data is actually new
+            if (syncedData.lastSynced !== d.lastSynced) {
+              setLoadStatus({ ok: true, msg: "Background auto-sync updated! ✓" });
+              return syncedData;
+            }
+            return d;
+          });
+        })
+        .catch(() => { });
+    };
+    const timer = setInterval(checkSync, 5000);
+    checkSync();
+    return () => clearInterval(timer);
+  }, []);
+
   const handleFacilityLoad = (facility) => {
     setData(emptyData());
     setData(d => ({
@@ -1224,69 +1246,215 @@ export default function FDTSAdaptationTool() {
         const buffer = ev.target.result;
         const mdb = new MDBReader(buffer);
         const tables = mdb.getTableNames();
-
         const newData = emptyData();
 
-        // Map MDB tables to FDTS structure
-        // Looking for common table patterns in EFSTS/FDTS MDBs
-        const fdtsTable = tables.find(t => t.toLowerCase().includes("fdts") || t.toLowerCase().includes("fix") || t.toLowerCase().includes("adapt"));
+        const findTable = (patterns) => tables.find(t => patterns.some(p => t.toLowerCase().includes(p.toLowerCase())));
 
-        if (fdtsTable) {
-          const rows = mdb.getTable(fdtsTable).getData();
+        // 1. Load PRINTERS
+        const printerTable = findTable(["Printer", "Device", "tblPrinter", "fdtsPrinter"]);
+        if (printerTable) {
+          const rows = mdb.getTable(printerTable).getData();
           rows.forEach(row => {
-            // Fixes
-            if (row.FixName && !newData.fixes.find(f => f.name === row.FixName)) {
-              newData.fixes.push({
-                name: row.FixName,
-                altitude: row.Altitude || "",
-                acList: row.TypeAC || "",
-                abbrv: row.Abbrv || "",
-                font: row.Font || "",
-                box: row.Box || ""
+            const name = row.DeviceName || row.PrinterName || row.Name || row.fdtsPrinter;
+            if (name && !newData.printers.find(p => p.name === name)) {
+              newData.printers.push({
+                name: String(name),
+                backup: String(row.BackupDevice || row.Backup || row.BackupPrinter || ""),
+                siteID: String(row.SiteID || row.Site || "")
               });
             }
-
-            // Printers
-            if (row.DeviceName && !newData.printers.find(p => p.name === row.DeviceName)) {
-              newData.printers.push({ name: row.DeviceName, backup: row.BackupDevice || "", siteID: "" });
-            }
-
-            // Role IDs
-            if (row.RoleID && !newData.roleIDs.includes(row.RoleID)) {
-              newData.roleIDs.push(row.RoleID);
-            }
-
-            // Departure Airports
-            if (row.DepPt && row.DepPt.length === 3 && !newData.departureAirports.includes(row.DepPt)) {
-              newData.departureAirports.push(row.DepPt);
-            }
-          });
-
-          // Configurations
-          const configNames = [...new Set(rows.map(r => r.ConfigName).filter(Boolean))];
-          configNames.forEach((name, ci) => {
-            const entries = rows.filter(r => r.ConfigName === name).map(r => ({
-              depAirport: r.DepPt || "",
-              roleID: r.RoleID || "",
-              fix: r.FixName || "",
-              altRange: r.Altitude || "",
-              acList: r.TypeAC || "",
-              printer1: r.DeviceName || "",
-              printer2: r.Device2 || ""
-            }));
-            newData.configurations.push({
-              name,
-              isDefault: ci === 0,
-              description: `Imported from MDB table: ${fdtsTable}`,
-              entries
-            });
           });
         }
 
+        // 2. Load ROLE IDS
+        const roleTable = findTable(["Role", "Scan", "tblRole", "tfdmRole"]);
+        if (roleTable) {
+          const rows = mdb.getTable(roleTable).getData();
+          rows.forEach(row => {
+            const id = row.RoleID || row.tfdmRoleID || row.Scanner || row.Value;
+            if (id && !newData.roleIDs.includes(String(id))) {
+              newData.roleIDs.push(String(id));
+            }
+          });
+        }
+
+        // 3. Load FIXES
+        const fixTable = findTable(["Fix", "AdaptedFix", "tblFix"]);
+        if (fixTable) {
+          const rows = mdb.getTable(fixTable).getData();
+          rows.forEach(row => {
+            const name = row.FixName || row.Name || row.Fix;
+            if (name && !newData.fixes.find(f => f.name === name)) {
+              newData.fixes.push({
+                name: String(name),
+                altitude: String(row.FixAltitude || row.Altitude || ""),
+                acList: String(row.FixAcList || row.AcList || row.TypeAC || ""),
+                abbrv: String(row.FixAbbrv || row.Abbrv || ""),
+                font: String(row.FixFont || row.Font || ""),
+                box: String(row.FixBox || row.Box || "")
+              });
+            }
+          });
+        }
+
+        // 4. Load HEADINGS
+        const headTable = findTable(["Heading", "tblHeading"]);
+        if (headTable) {
+          const rows = mdb.getTable(headTable).getData();
+          rows.forEach(row => {
+            const val = row.Value || row.Heading || row.Deg;
+            if (val && !newData.headings.find(h => h.value === String(val))) {
+              newData.headings.push({
+                value: String(val),
+                abbrv: String(row.Abbrv || ""),
+                attribute: String(row.Attribute || row.Attr || ""),
+                font: String(row.Font || ""),
+                box: String(row.Box || "")
+              });
+            }
+          });
+        }
+
+        // 5. Load ALTITUDES
+        const altTable = findTable(["Altitude", "tblAlt"]);
+        if (altTable) {
+          const rows = mdb.getTable(altTable).getData();
+          rows.forEach(row => {
+            const val = row.Value || row.Altitude || row.Alt;
+            if (val && !newData.altitudes.find(a => a.value === String(val))) {
+              newData.altitudes.push({
+                value: String(val),
+                abbrv: String(row.Abbrv || ""),
+                font: String(row.Font || ""),
+                box: String(row.Box || "")
+              });
+            }
+          });
+        }
+
+        // 6. Load RUNWAYS
+        const rwyTable = findTable(["Runway", "tblRunway", "tblRwy"]);
+        if (rwyTable) {
+          const rows = mdb.getTable(rwyTable).getData();
+          rows.forEach(row => {
+            const val = row.Value || row.Runway || row.Rwy;
+            if (val && !newData.runways.find(r => r.value === String(val))) {
+              newData.runways.push({
+                value: String(val),
+                airport: String(row.Airport || row.Apt || ""),
+                abbrv: String(row.Abbrv || ""),
+                font: String(row.Font || ""),
+                box: String(row.Box || "")
+              });
+            }
+          });
+        }
+
+        // 7. Load AOI
+        const aoiTable = findTable(["AOI", "AreaOfInterest", "tblAOI"]);
+        if (aoiTable) {
+          const rows = mdb.getTable(aoiTable).getData();
+          rows.forEach(row => {
+            const val = row.Value || row.AOI || row.Name;
+            if (val && !newData.aoi.find(a => a.value === String(val))) {
+              newData.aoi.push({
+                value: String(val),
+                desc: String(row.Description || row.Desc || ""),
+                abbrv: String(row.Abbrv || ""),
+                font: String(row.Font || ""),
+                box: String(row.Box || "")
+              });
+            }
+          });
+        }
+
+        // 8. Load DEPARTURE AIRPORTS
+        const depTable = findTable(["DepApt", "Departure", "tblDep"]);
+        if (depTable) {
+          const rows = mdb.getTable(depTable).getData();
+          rows.forEach(row => {
+            const apt = row.DepApt || row.Airport || row.DepAirport || row.Key;
+            if (apt && String(apt).length === 3 && !newData.departureAirports.includes(String(apt))) {
+              newData.departureAirports.push(String(apt).toUpperCase());
+            }
+          });
+        }
+
+        // 8. Load STARS
+        const starsPosTable = findTable(["StarsPosition", "tblSTARS", "tblStarsPos"]);
+        if (starsPosTable) {
+          const rows = mdb.getTable(starsPosTable).getData();
+          rows.forEach(row => {
+            const pos = row.Position || row.Pos;
+            if (pos && !newData.starsPositions.find(p => p.position === String(pos))) {
+              newData.starsPositions.push({
+                position: String(pos),
+                printer: String(row.Printer || row.Device || ""),
+                handoffEvent: String(row.HandoffEvent || ""),
+                enroutePriority: String(row.EnroutePriority || "")
+              });
+            }
+          });
+        }
+
+        const starsExcTable = findTable(["StarsException", "tblSTARSExc"]);
+        if (starsExcTable) {
+          const rows = mdb.getTable(starsExcTable).getData();
+          rows.forEach(row => {
+            const pos = row.Position || row.Pos;
+            if (pos) {
+              newData.starsExceptions.push({
+                position: String(pos),
+                handoffSource: String(row.HandoffSource || row.Source || "")
+              });
+            }
+          });
+        }
+
+        // 9. Load CONFIGURATIONS
+        const routingTable = findTable(["Routing", "ConfigEntry", "tblRouting", "AdaptedConfiguration"]);
+        if (routingTable) {
+          const rows = mdb.getTable(routingTable).getData();
+          const configField = ["ConfigName", "Configuration", "PlanName"].find(f => rows[0] && rows[0][f] !== undefined);
+          if (configField) {
+            const configNames = [...new Set(rows.map(r => r[configField]).filter(Boolean))];
+            configNames.forEach((name, ci) => {
+              const entries = rows.filter(r => r[configField] === name).map(r => ({
+                depAirport: String(r.DepAirport || r.DepPt || r.DepartureAirport || ""),
+                roleID: String(r.tfdmRoleID || r.RoleID || ""),
+                fix: String(r.Fix || r.FixName || ""),
+                altRange: String(r.AltitudeRange || r.Altitude || ""),
+                acList: String(r.RouteAcList || r.AcList || r.TypeAC || ""),
+                printer1: String(r.fdtsPrinter1 || r.Printer1 || r.Device1 || r.DeviceName || ""),
+                printer2: String(r.fdtsPrinter2 || r.Printer2 || r.Device2 || "")
+              }));
+              newData.configurations.push({
+                name: String(name),
+                isDefault: ci === 0 || String(rows.find(r => r[configField] === name)?.Default).toLowerCase() === "true",
+                description: `Imported from MDB: ${file.name}`,
+                entries
+              });
+            });
+          }
+        }
+
+        // 11. Success reporting
+        const summary = [
+          newData.fixes.length > 0 && `${newData.fixes.length} fixes`,
+          newData.printers.length > 0 && `${newData.printers.length} printers`,
+          newData.configurations.length > 0 && `${newData.configurations.length} configs`,
+          newData.headings.length > 0 && `${newData.headings.length} headings`,
+          newData.runways.length > 0 && `${newData.runways.length} runways`,
+          newData.aoi.length > 0 && `${newData.aoi.length} AOIs`,
+          newData.departureAirports.length > 0 && `${newData.departureAirports.length} airports`,
+          newData.starsPositions.length > 0 && `${newData.starsPositions.length} STARS`
+        ].filter(Boolean).join(", ");
+
         setData(newData);
-        setLoadStatus({ ok: true, msg: `Direct MDB Import: ${file.name} (${tables.length} tables parsed)` });
+        setLoadStatus({ ok: true, msg: `MDB Parsed: ${file.name}. Found: ${summary || "No relevant data"}` });
         setActiveTab("Overview");
       } catch (err) {
+        console.error("MDB Error:", err);
         setLoadStatus({ ok: false, msg: `MDB Import Error: ${err.message}` });
       }
     };
@@ -1327,7 +1495,10 @@ export default function FDTSAdaptationTool() {
             <div className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center text-white text-sm font-bold">✈</div>
             <div>
               <div className="text-sm font-bold text-slate-100 tracking-wide">FDTS ADAPTATION TOOL — NATIONAL</div>
-              <div className="text-xs text-slate-400">FDIO PC-RCU | PCRCU Schema v1.01 | Phase 1 Enhanced</div>
+              <div className="text-xs text-slate-400">
+                FDIO PC-RCU | PCRCU Schema v1.01 | Phase 1 Enhanced
+                {data.lastSynced && <span className="ml-3 text-green-400 font-mono">Sync: {new Date(data.lastSynced).toLocaleTimeString()} ✓</span>}
+              </div>
             </div>
             {data.fileContext.tracon && <Badge color="blue">{data.fileContext.center} / {data.fileContext.tracon}</Badge>}
           </div>

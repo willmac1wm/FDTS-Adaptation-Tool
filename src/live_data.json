@@ -1,0 +1,402 @@
+{
+  "fileContext": {
+    "center": "",
+    "tracon": "",
+    "dateCreated": ""
+  },
+  "roleIDs": [],
+  "fixes": [
+    {
+      "name": "<Default>",
+      "altitude": "",
+      "acList": "",
+      "abbrv": "",
+      "font": "",
+      "box": ""
+    },
+    {
+      "name": "BWG",
+      "altitude": "",
+      "acList": "",
+      "abbrv": "",
+      "font": "",
+      "box": ""
+    },
+    {
+      "name": "CHCLL",
+      "altitude": "",
+      "acList": "",
+      "abbrv": "",
+      "font": "",
+      "box": ""
+    },
+    {
+      "name": "CHCLL4",
+      "altitude": "",
+      "acList": "",
+      "abbrv": "",
+      "font": "",
+      "box": ""
+    },
+    {
+      "name": "CVG CVG169",
+      "altitude": "",
+      "acList": "",
+      "abbrv": "",
+      "font": "",
+      "box": ""
+    },
+    {
+      "name": "CVG V5 IIU",
+      "altitude": "",
+      "acList": "",
+      "abbrv": "",
+      "font": "",
+      "box": ""
+    },
+    {
+      "name": "CVG206044",
+      "altitude": "",
+      "acList": "",
+      "abbrv": "",
+      "font": "",
+      "box": ""
+    },
+    {
+      "name": "DOUNS",
+      "altitude": "",
+      "acList": "",
+      "abbrv": "",
+      "font": "",
+      "box": ""
+    },
+    {
+      "name": "HYK",
+      "altitude": "",
+      "acList": "",
+      "abbrv": "",
+      "font": "",
+      "box": ""
+    },
+    {
+      "name": "SILKS6",
+      "altitude": "",
+      "acList": "",
+      "abbrv": "",
+      "font": "",
+      "box": ""
+    },
+    {
+      "name": "GIPLE7",
+      "altitude": "",
+      "acList": "",
+      "abbrv": "",
+      "font": "",
+      "box": ""
+    },
+    {
+      "name": "GIPLE",
+      "altitude": "",
+      "acList": "",
+      "abbrv": "",
+      "font": "",
+      "box": ""
+    },
+    {
+      "name": "KENLN",
+      "altitude": "",
+      "acList": "",
+      "abbrv": "",
+      "font": "",
+      "box": ""
+    },
+    {
+      "name": "APE",
+      "altitude": "",
+      "acList": "",
+      "abbrv": "",
+      "font": "",
+      "box": ""
+    },
+    {
+      "name": "CVG CVG033",
+      "altitude": "",
+      "acList": "",
+      "abbrv": "",
+      "font": "",
+      "box": ""
+    },
+    {
+      "name": "CVG CVG033056",
+      "altitude": "",
+      "acList": "",
+      "abbrv": "",
+      "font": "",
+      "box": ""
+    },
+    {
+      "name": "CVG CVG036",
+      "altitude": "",
+      "acList": "",
+      "abbrv": "",
+      "font": "",
+      "box": ""
+    },
+    {
+      "name": "CVG CVG067",
+      "altitude": "",
+      "acList": "",
+      "abbrv": "",
+      "font": "",
+      "box": ""
+    },
+    {
+      "name": "CVG KEKEE",
+      "altitude": "",
+      "acList": "",
+      "abbrv": "",
+      "font": "",
+      "box": ""
+    },
+    {
+      "name": "CVG RIKLE",
+      "altitude": "",
+      "acList": "",
+      "abbrv": "",
+      "font": "",
+      "box": ""
+    },
+    {
+      "name": "CVG033 RIK",
+      "altitude": "",
+      "acList": "",
+      "abbrv": "",
+      "font": "",
+      "box": ""
+    },
+    {
+      "name": "CVG033056",
+      "altitude": "",
+      "acList": "",
+      "abbrv": "",
+      "font": "",
+      "box": ""
+    },
+    {
+      "name": "CVG036",
+      "altitude": "",
+      "acList": "",
+      "abbrv": "",
+      "font": "",
+      "box": ""
+    },
+    {
+      "name": "DJB",
+      "altitude": "",
+      "acList": "",
+      "abbrv": "",
+      "font": "",
+      "box": ""
+    },
+    {
+      "name": "DQN",
+      "altitude": "",
+      "acList": "",
+      "abbrv": "",
+      "font": "",
+      "box": ""
+    },
+    {
+      "name": "FFO",
+      "altitude": "",
+      "acList": "",
+      "abbrv": "",
+      "font": "",
+      "box": ""
+    },
+    {
+      "name": "HAGOL5",
+      "altitude": "",
+      "acList": "",
+      "abbrv": "",
+      "font": "",
+      "box": ""
+    },
+    {
+      "name": "ILN",
+      "altitude": "",
+      "acList": "",
+      "abbrv": "",
+      "font": "",
+      "box": ""
+    },
+    {
+      "name": "KEKEE",
+      "altitude": "",
+      "acList": "",
+      "abbrv": "",
+      "font": "",
+      "box": ""
+    },
+    {
+      "name": "LEX",
+      "altitude": "",
+      "acList": "",
+      "abbrv": "",
+      "font": "",
+      "box": ""
+    },
+    {
+      "name": "MARTZ",
+      "altitude": "",
+      "acList": "",
+      "abbrv": "",
+      "font": "",
+      "box": ""
+    },
+    {
+      "name": "RHOMM3",
+      "altitude": "",
+      "acList": "",
+      "abbrv": "",
+      "font": "",
+      "box": ""
+    },
+    {
+      "name": "RHOMM4",
+      "altitude": "",
+      "acList": "",
+      "abbrv": "",
+      "font": "",
+      "box": ""
+    },
+    {
+      "name": "RIKLE",
+      "altitude": "",
+      "acList": "",
+      "abbrv": "",
+      "font": "",
+      "box": ""
+    },
+    {
+      "name": "RIKLE DJB",
+      "altitude": "",
+      "acList": "",
+      "abbrv": "",
+      "font": "",
+      "box": ""
+    },
+    {
+      "name": "V128 YRK",
+      "altitude": "",
+      "acList": "",
+      "abbrv": "",
+      "font": "",
+      "box": ""
+    },
+    {
+      "name": "V19 APE",
+      "altitude": "",
+      "acList": "",
+      "abbrv": "",
+      "font": "",
+      "box": ""
+    },
+    {
+      "name": "V5 APE",
+      "altitude": "",
+      "acList": "",
+      "abbrv": "",
+      "font": "",
+      "box": ""
+    },
+    {
+      "name": "V5 MOAKS",
+      "altitude": "",
+      "acList": "",
+      "abbrv": "",
+      "font": "",
+      "box": ""
+    },
+    {
+      "name": "V97 HYK",
+      "altitude": "",
+      "acList": "",
+      "abbrv": "",
+      "font": "",
+      "box": ""
+    },
+    {
+      "name": "V97 LEX",
+      "altitude": "",
+      "acList": "",
+      "abbrv": "",
+      "font": "",
+      "box": ""
+    },
+    {
+      "name": "YRK",
+      "altitude": "",
+      "acList": "",
+      "abbrv": "",
+      "font": "",
+      "box": ""
+    },
+    {
+      "name": "TRFWA",
+      "altitude": "",
+      "acList": "",
+      "abbrv": "",
+      "font": "",
+      "box": ""
+    },
+    {
+      "name": "V5 IIU",
+      "altitude": "",
+      "acList": "",
+      "abbrv": "",
+      "font": "",
+      "box": ""
+    },
+    {
+      "name": "V5 SDF",
+      "altitude": "",
+      "acList": "",
+      "abbrv": "",
+      "font": "",
+      "box": ""
+    }
+  ],
+  "departureAirports": [],
+  "aircraftLists": {
+    "recat": {
+      "name": "",
+      "aircraft": []
+    },
+    "list1": {
+      "name": "Low Performance",
+      "aircraft": []
+    },
+    "list2": {
+      "name": "High Performance",
+      "aircraft": []
+    },
+    "list3": {
+      "name": "",
+      "aircraft": []
+    },
+    "list4": {
+      "name": "",
+      "aircraft": []
+    }
+  },
+  "printers": [],
+  "headings": [],
+  "altitudes": [],
+  "runways": [],
+  "aoi": [],
+  "configurations": [],
+  "starsPositions": [],
+  "starsExceptions": [],
+  "lastSynced": "2026-03-06T00:13:02.802Z"
+}
